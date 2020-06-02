@@ -1447,6 +1447,141 @@ The library file format is a sequence of object files with additional structures
 ||object file length|32-bit|Length of the Object File. If this integer is 0 then it is indicated that the current \<Object File Block\> has been marked "deleted" and will not be used.|
 ||object file|length bytes|'Z80RMF01' Object File|
 
+## TODO List
+
+- Parse TASM input
+- Parse Z80MR input
+- high level structures
+- macros
+- architecture-specific macro-like opcodes
+- architecture-specific character encoding
+- JR to JP optimization for speed
+- JP to JR optimization for size
+- section groups
+- absolute memory areas with holes
+- overlays
+- compile expressions
+- object files store list of input files and command line so that -d can decide if it is necessary to recompile
+- object files can store same code for multiple architectures
+- object files and library files have an index of all defined symbols
+- recursive parsing of @lists
+- environment variable to pass options to assembler
+- preprocessor
+- separate scanner from preprocessor  
+- parse expressions  
+- compute compile-time constants  
+- execute compile-time IF/ELSE/ENDIF  
+- do not process preprocessor directives in the false branch of IF  
+  fails building z88dk because INCLUDE of unexistent file guarded by
+  IF FALSE is processed and assembly fails  
+- process C_LINE  
+- fix list files when parsing a .i
+- move all directives from z80asm to z80asm2  
+- handle -m for architecture specific code  
+- handle -D and -U for top-level defines
+- process INCLUDE / INCBIN / BINARY  
+- generate .i file  
+- indicate syntax error location  
+- process labels  
+- process INCLUDE  
+- process BINARY/INCBIN  
+- bug rst label
+- Implement recursive includes in Coco/R parser/scanner
+- Separate standard Z80 assembly from extensions; add macro files for extensions.
+- Port to C++
+- Parse command line
+- Input source
+- Preprocess
+- Lexing
+- Parsing
+- Symbol Table
+- Object Files
+- Assembling 
+- Linking
+- List file
+- allow EQU as synonym to DEFC
+- finish the split between front-end and back-end;
+- implement an expression parser with a parser generator, to get rid of
+  the need to write a '#' to tell the assembler something it should know:
+  a difference between two addresses is a constant;
+- add an additional step to automatically change JR into JP if the
+  distance is too far;
+- implement macros inside the assembler
+- add high level constructs (IF flag / ELSE / ENDIF, 
+  DO WHILE flag, ...)
+- add a rule based optimizer based on RAGEL as a state machine generator
+- --icase option
+- --c-strings or --asm-strings
+- architectire-dependent character mapping
+- Test: jr: jr jr
+- Need option to debug pre-processing and macro expansion - -E
+- Add one opcode
+- Separate standard Z80 assembly from extensions; add macro files for extensions
+- Preprocess
+- Parsing
+- Symbol Table
+- Object Files
+- Assembling
+- Linking
+- List file
+- allow EQU as synonym to DEFC
+- finish the split between front-end and back-end;
+- implement an expression parser with a parser generator, to get rid of the need to write a '#' to tell the assembler something it should know: a difference between two addresses is a constant;
+- add an additional step to automatically change JR into JP if the distance is too far;
+- cleanup the symbol table to implement the GLOBAL suggestion: declare a symbol GLOBAL and it is PUBLIC if defined, or EXTERN otherwise
+- implement macros inside the assembler
+- add high level constructs (IF flag / ELSE / ENDIF, DO WHILE flag, ...)
+- add a rule based optimizer based on RAGEL as a state machine generator
+- BUG_0038: library modules not loaded in sequence: The library modules loaded to the linked binary file should respect the order given on the command line.
+- generate .err files with errors
+- show source line and syntax error location 
+- section name: introduces a new section at the end of the current list
+- section name before name: introduces a new section before the given section
+- section name after name: introduces a new section after the given name
+- org:
+  1. Any section with an ORG address starts a new area of code and generates 
+     a new binary output file, named <first_module_name>_<section_name>.bin
+  2. Any section that has no ORG address gets packed at the end of the previous section.
+- The null section is only special in the sense that the code is output 
+  to <first_module_name>.bin, and that it's ORG address can be defined in 
+  the command line via -rhhhh.
+- simplify expressions to tranform LABEL1-LABEL2 into a constant
+- --icase option
+- --c-strings or --asm-strings
+- architecture-dependent character mapping
+- Test: jr: jr jr
+- Need option to debug pre-processing and macro expansion - -E
+- Add one opcode
+- Separate standard Z80 assembly from extensions; add macro files for extensions
+- Preprocess
+- Parsing
+- Symbol Table
+- Object Files
+- Assembling
+- Linking
+- List file
+- allow EQU as synonym to DEFC
+- finish the split between front-end and back-end;
+- implement an expression parser with a parser generator, to get rid of the need to write a '#' to tell the assembler something it should know: a difference between two addresses is a constant;
+- add an additional step to automatically change JR into JP if the distance is too far;
+- cleanup the symbol table to implement the GLOBAL suggestion: declare a symbol GLOBAL and it is PUBLIC if defined, or EXTERN otherwise
+- implement macros inside the assembler
+- add high level constructs (IF flag / ELSE / ENDIF, DO WHILE flag, ...)
+- add a rule based optimizer based on RAGEL as a state machine generator
+- BUG_0038: library modules not loaded in sequence: The library modules loaded to the linked binary file should respect the order given on the command line.
+- generate .err files with errors
+- show source line and syntax error location 
+- Manage libraries
+- Link object files and libraries
+- Split object files in modules, link each module separately
+- :: to define public symbol
+- ## to declare external symbol
+- #include
+- #define
+- #macro
+
+
+
 ## Copyright
 
 The original z80asm module assembler was written by Gunther Strube. 
